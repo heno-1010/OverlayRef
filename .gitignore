@@ -1,0 +1,18 @@
+# Visual Studio 用 .gitignore テンプレート
+
+# ビルド出力
+bin/
+obj/
+
+# VS 一時ファイル
+.vs/
+
+# ユーザー設定
+*.user
+*.suo
+
+# その他
+*.db
+*.log
+*.tmp
+*.bak
