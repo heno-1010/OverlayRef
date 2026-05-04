@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:OverlayRef"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="450"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None"
+        AllowsTransparency="True"
+        Background="#84a2d4">
     <Grid>
-
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックでメニューを開く" Foreground="White" FontWeight="Bold"/>
     </Grid>
 </Window>
