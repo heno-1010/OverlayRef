@@ -6,16 +6,27 @@
         xmlns:local="clr-namespace:OverlayRef"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="450"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None"
-        AllowsTransparency="True">
-    <Grid Background="#84a2d4">
-        <Grid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
-                <MenuItem Header="閉じる" Click="Close_Click"/>
-            </ContextMenu>
-        </Grid.ContextMenu>
-        
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックで画像を開く" Foreground="White" FontWeight="Bold"/>
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
+    <Grid>
+        <Grid Background="#84a2d4" x:Name="NotImageGrid" Visibility="Visible">
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
+                    <MenuItem Header="閉じる" Click="Close_Click"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックで画像を開く" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+        <Grid x:Name="ImageGrid" Visibility="Collapsed">
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
+                    <MenuItem Header="閉じる" Click="Close_Click"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
+
+            <Image Source="{Binding ImageSource}" Stretch="Fill"/>
+        </Grid>
     </Grid>
 </Window>
