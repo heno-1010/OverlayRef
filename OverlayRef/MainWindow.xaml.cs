@@ -20,5 +20,14 @@ namespace OverlayRef
                 this.DragMove();
             }
         }
+        private void OpenImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

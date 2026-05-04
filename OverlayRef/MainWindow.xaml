@@ -7,9 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="450"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None"
-        AllowsTransparency="True"
-        Background="#84a2d4">
-    <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックでメニューを開く" Foreground="White" FontWeight="Bold"/>
+        AllowsTransparency="True">
+    <Grid Background="#84a2d4">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
+                <MenuItem Header="閉じる" Click="Close_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックで画像を開く" Foreground="White" FontWeight="Bold"/>
     </Grid>
 </Window>
