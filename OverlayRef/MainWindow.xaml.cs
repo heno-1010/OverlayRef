@@ -97,6 +97,12 @@ namespace OverlayRef
 
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                _vm.Opacity += e.Delta > 0 ? 0.05 : -0.05;
+                return;
+            }
+
             var image = sender as FrameworkElement;
 
             var parent = image.Parent as FrameworkElement;

@@ -10,6 +10,7 @@ namespace OverlayRef.ViewModels
     {
         private BitmapImage _imageSource;
         private double _scale = 1.0;
+        private double _opacity = 1.0;
 
         public BitmapImage ImageSource
         {
@@ -48,6 +49,15 @@ namespace OverlayRef.ViewModels
             {
                 _offsetY = value;
                 OnPropertyChanged(nameof(OffsetY));
+            }
+        }
+        public double Opacity
+        {
+            get => _opacity;
+            set
+            {
+                _opacity = Math.Clamp(value, 0.1, 1.0);
+                OnPropertyChanged(nameof(Opacity));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
