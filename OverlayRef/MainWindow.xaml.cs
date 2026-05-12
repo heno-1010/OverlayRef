@@ -273,5 +273,11 @@ namespace OverlayRef
                 ImageControl.ReleaseMouseCapture();
             }
         }
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            var helpwindow = new HelpWindow();
+            helpwindow.Owner = this;
+            helpwindow.Show();
+        }
     }
 }

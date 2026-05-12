@@ -15,20 +15,22 @@
                       GlassFrameThickness="0"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <Grid Background="#84a2d4" x:Name="NotImageGrid" Visibility="Visible">
+        <Grid Background="#5B6EE1" x:Name="NotImageGrid" Visibility="Visible">
             <Grid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
+                    <MenuItem Header="使い方" Click="Help_Click"/>
                     <MenuItem Header="閉じる" Click="Close_Click"/>
                 </ContextMenu>
             </Grid.ContextMenu>
 
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックで画像を開く" Foreground="White" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="右クリックで画像を開く" Foreground="#DCDCDC" FontWeight="Bold"/>
         </Grid>
         <Grid x:Name="ImageGrid" Visibility="Collapsed">
             <Grid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="画像を開く" Click="OpenImage_Click"/>
+                    <MenuItem Header="使い方" Click="Help_Click"/>
                     <MenuItem Header="閉じる" Click="Close_Click"/>
                 </ContextMenu>
             </Grid.ContextMenu>

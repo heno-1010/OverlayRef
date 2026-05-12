@@ -1,0 +1,78 @@
+﻿<Window x:Class="OverlayRef.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OverlayRef"
+        mc:Ignorable="d"
+        Title="HelpWindow" Height="300" Width="350" Background="#2B2D31" ResizeMode="NoResize">
+    <Grid Margin="12" HorizontalAlignment="Center">
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+                <TextBlock Text="使い方" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="Border" x:Key="KeyBorder">
+                        <Setter Property="Background" Value="#6C63FF"/>
+                        <Setter Property="CornerRadius" Value="6"/>
+                        <Setter Property="Padding" Value="8,5"/>
+                        <Setter Property="Margin" Value="0,0,10,8"/>
+                    </Style>
+
+                    <Style TargetType="TextBlock" x:Key="KeyText">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="13"/>
+                    </Style>
+
+                    <Style TargetType="TextBlock" x:Key="DescText">
+                        <Setter Property="Foreground" Value="#DDDDDD"/>
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,0,0,8"/>
+                    </Style>
+
+                </Grid.Resources>
+
+                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource KeyBorder}">
+                    <TextBlock Text="ドラッグ" Style="{StaticResource KeyText}"/>
+                </Border>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="ウィンドウ移動" Style="{StaticResource DescText}"/>
+
+                <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource KeyBorder}">
+                    <TextBlock Text="マウスホイール" Style="{StaticResource KeyText}"/>
+                </Border>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="画像の拡大・縮小" Style="{StaticResource DescText}"/>
+
+                <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource KeyBorder}">
+                    <TextBlock Text="ホイール押し + ドラッグ" Style="{StaticResource KeyText}"/>
+                </Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="拡大画像を移動" Style="{StaticResource DescText}"/>
+
+                <Border Grid.Row="3" Grid.Column="0" Style="{StaticResource KeyBorder}">
+                    <TextBlock Text="Ctrl + マウスホイール下/上" Style="{StaticResource KeyText}"/>
+                </Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="透明度を上げる/戻す" Style="{StaticResource DescText}"/>
+
+                <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource KeyBorder}">
+                    <TextBlock Text="Ctrl + Shift + T" Style="{StaticResource KeyText}"/>
+                </Border>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="クリック透過 ON/OFF" Style="{StaticResource DescText}"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
