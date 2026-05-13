@@ -279,5 +279,13 @@ namespace OverlayRef
             helpwindow.Owner = this;
             helpwindow.Show();
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == (ModifierKeys.Control | ModifierKeys.Shift) && e.Key == Key.T)
+            {
+                MessageBox.Show("テスト用");
+            }
+        }
     }
 }
