@@ -69,7 +69,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="透明度を上げる/戻す" Style="{StaticResource DescText}"/>
 
                 <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource KeyBorder}">
-                    <TextBlock Text="Ctrl + Shift + T" Style="{StaticResource KeyText}"/>
+                    <TextBlock Text="Ctrl + Alt + T" Style="{StaticResource KeyText}"/>
                 </Border>
                 <TextBlock Grid.Row="4" Grid.Column="1" Text="クリック透過 ON/OFF" Style="{StaticResource DescText}"/>
             </Grid>

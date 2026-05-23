@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="450"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None"
         Topmost="True" SizeChanged="Window_SizeChanged" Opacity="{Binding Opacity}" AllowsTransparency="True"
-        PreviewKeyDown="Window_PreviewKeyDown">
+        PreviewKeyDown="Window_PreviewKeyDown" Loaded="Window_Loaded">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="8"
                       CaptionHeight="0"

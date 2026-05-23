@@ -1,4 +1,6 @@
 ﻿using OverlayRef.ViewModels;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -15,6 +17,29 @@ namespace OverlayRef
         private bool _isPanning = false;
         private Point _lastMousePos;
         private DispatcherTimer _resizeTimer;
+        private bool _isClickThroughEnabled = false;
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_TRANSPARENT = 0x00000020;
+        private const int WS_EX_LAYERED = 0x00080000;
+
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        private const int HOTKEY_ID = 9000;
+
+        private const uint MOD_ALT = 0x0001;
+        private const uint MOD_CONTROL = 0x0002;
+
+        private const uint VK_T = 0x54;
+        private const int WM_HOTKEY = 0x0312;
 
         public MainWindow()
         {
@@ -25,7 +50,63 @@ namespace OverlayRef
             _resizeTimer.Interval = TimeSpan.FromMilliseconds(150);
             _resizeTimer.Tick += ResizeTimer_Tick;
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
 
+            HwndSource source = HwndSource.FromHwnd(hwnd);
+            source.AddHook(HwndHook);
+            RegisterHotKey(hwnd, HOTKEY_ID, MOD_CONTROL | MOD_ALT, VK_T);
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd,int msg,IntPtr wParam,IntPtr lParam,ref bool handled)
+        {
+            if (msg == WM_HOTKEY)
+            {
+                if (wParam.ToInt32() == HOTKEY_ID)
+                {
+                    ToggleClickThrough();
+                    handled = true;
+                }
+            }
+
+            return IntPtr.Zero;
+        }
+        private void ToggleClickThrough()
+        {
+            _isClickThroughEnabled = !_isClickThroughEnabled;
+
+            if (_isClickThroughEnabled)
+            {
+                EnableClickThrough();
+            }
+            else
+            {
+                DisableClickThrough();
+            }
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+
+            UnregisterHotKey(hwnd, HOTKEY_ID);
+
+            base.OnClosed(e);
+        }
+        private void EnableClickThrough()
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            int exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+            exStyle |= WS_EX_LAYERED | WS_EX_TRANSPARENT;
+            SetWindowLong(hwnd, GWL_EXSTYLE, exStyle);
+        }
+        private void DisableClickThrough()
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            int exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+            exStyle &= ~(WS_EX_LAYERED | WS_EX_TRANSPARENT);
+            SetWindowLong(hwnd, GWL_EXSTYLE, exStyle);
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
@@ -282,9 +363,19 @@ namespace OverlayRef
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.Modifiers == (ModifierKeys.Control | ModifierKeys.Shift) && e.Key == Key.T)
+            if (Keyboard.Modifiers == (ModifierKeys.Control | ModifierKeys.Alt) && e.Key == Key.T)
             {
-                MessageBox.Show("テスト用");
+                _isClickThroughEnabled = !_isClickThroughEnabled;
+                if (_isClickThroughEnabled)
+                {
+                    EnableClickThrough();
+                }
+                else
+                {
+                    DisableClickThrough();
+                }
+                MessageBox.Show(_isClickThroughEnabled ? "Click-through enabled." : "Click-through disabled.");
+
             }
         }
     }
