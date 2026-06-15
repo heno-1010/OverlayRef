@@ -18,6 +18,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -72,6 +73,8 @@
                     <TextBlock Text="Ctrl + Alt + T" Style="{StaticResource KeyText}"/>
                 </Border>
                 <TextBlock Grid.Row="4" Grid.Column="1" Text="クリック透過 ON/OFF" Style="{StaticResource DescText}"/>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="OverlayRef / Created by heno-1010" FontSize="12" Foreground="#888888" HorizontalAlignment="Right" Margin="0,20,0,0"/>
             </Grid>
         </DockPanel>
     </Grid>
